@@ -243,8 +243,9 @@ Sub RefreshAllValis()
             'update the "V_xxx" fields
             For Each rCell In valiRange.Cells
                 rCell.FormulaR1C1 = valis(id)(content)
+                nms(n).Comment = valis(id)(7)  # Update the comment in case the vali name has changed
                 If create_links = True Then
-                    ActiveSheet.Hyperlinks.Add Anchor:=rCell, Address:=vURL & "/project/" & valis(id)(1) & "/components/valis/" & id & "/", ScreenTip:=valis(id)(0) & ": " & valis(id)(4) & scrtip
+                    ActiveSheet.Hyperlinks.Add Anchor:=rCell, Address:=vURL & "/project/" & valis(id)(1) & "/components/valis/" & id & "/", ScreenTip:=valis(id)(0) & ": " & valis(id)(4) & scrtip  & " (" & valis(id)(7) & ")"
                 End If
             Next
         ElseIf Not valis.Exists(id) And InStr(nms(n).Name, "V_") <> 0 Then
